@@ -164,15 +164,17 @@
     if (isset($_POST['login'])) {
     	$email=$_POST['umail'];
     	$pass=$_POST['upass'];
-    	$sql="SELECT * FROM accinfo WHERE name='$email' AND password='$pass'";
+    	$sql="SELECT * FROM accinfo WHERE username='$email' AND password='$pass'";
     	$result=$conn->query($sql);
-    //	echo "<script>alert('".$conn->error."')</script>";
-    	if ($result->num_rows>0) {
+    	echo "<script>alert('".$conn->error."')</script>";
+        if ($result) {
+            if ($result->num_rows>0) {
     		$_SESSION['username']=$email;
-    	//	echo "<script>window.open('home.php','_self');</script>";
+            echo "<script>alert('".$_SESSION['username']."')</script>";
+    		echo "<script>window.open('Home.php','_self');</script>";
     	}else{
     		echo "<script>alert('Invalid User');</script>";
-    	}
+    	} }
     }
    ?> 
 </div>
